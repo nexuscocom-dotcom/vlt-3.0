@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import FloatingHearts from './components/FloatingHearts';
-import { generateLoveMessage } from './services/geminiService';
 import { AppState } from './types';
 
 const RetroBorder: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -46,10 +45,8 @@ const RetroBorder: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 const App: React.FC = () => {
   const [state, setState] = useState<AppState>(AppState.ASKING);
   const [noButtonPos, setNoButtonPos] = useState({ x: 0, y: 0 });
-  const [loveNote, setLoveNote] = useState<string>("");
   const [isClient, setIsClient] = useState(false);
   
-  // Reliable format for Google Drive direct display
   const DRIVE_IMG_ID = "1yVbRKE2SyZWmkXe6ThIPGRh7xheFFhpw";
   const DRIVE_IMAGE_URL = `https://lh3.googleusercontent.com/d/${DRIVE_IMG_ID}`;
   const FALLBACK_IMAGE = "https://storage.googleapis.com/mweb-content/interactive-ai/images/cute-hearts.png";
@@ -65,10 +62,8 @@ const App: React.FC = () => {
     setNoButtonPos({ x, y });
   }, []);
 
-  const handleYes = async () => {
-    setState(AppState.LOADING);
-    const message = await generateLoveMessage();
-    setLoveNote(message);
+  const handleYes = () => {
+    // Immediate transition for best user experience
     setState(AppState.ACCEPTED);
   };
 
@@ -78,7 +73,6 @@ const App: React.FC = () => {
     <RetroBorder>
       <FloatingHearts />
       
-      {/* Box is non-opaque as requested */}
       <div className="z-10 bg-transparent p-6 md:p-10 rounded-2xl border-4 border-[#d12d3e] text-center max-w-xl w-full relative transition-all duration-300">
         
         {state === AppState.ASKING && (
@@ -122,19 +116,6 @@ const App: React.FC = () => {
           </div>
         )}
 
-        {state === AppState.LOADING && (
-          <div className="space-y-6 py-10">
-             <div className="flex justify-center space-x-3">
-                <div className="w-6 h-6 bg-[#d12d3e] rounded-full animate-bounce"></div>
-                <div className="w-6 h-6 bg-[#d12d3e] rounded-full animate-bounce [animation-delay:-0.2s]"></div>
-                <div className="w-6 h-6 bg-[#d12d3e] rounded-full animate-bounce [animation-delay:-0.4s]"></div>
-             </div>
-             <p className="text-[#d12d3e] font-bold text-xl uppercase tracking-widest font-body">
-                Just a moment, sweetheart...
-             </p>
-          </div>
-        )}
-
         {state === AppState.ACCEPTED && (
           <div className="space-y-6 animate-in fade-in zoom-in duration-500">
             <h2 className="text-6xl md:text-7xl font-title text-[#d12d3e]">
@@ -150,7 +131,7 @@ const App: React.FC = () => {
             </div>
             <div className="p-6 rounded-xl border-2 border-dashed border-[#d12d3e]">
                 <p className="text-xl md:text-2xl text-[#d12d3e] leading-relaxed font-body italic font-semibold">
-                    "{loveNote}"
+                    "You make me the happiest person alive! I'm so lucky to have you as my Valentine. Call me soon at 034 93 801 32 - Jonathan ❤️"
                 </p>
             </div>
             <div className="flex flex-col items-center gap-4">
