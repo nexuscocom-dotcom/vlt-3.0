@@ -63,7 +63,6 @@ const App: React.FC = () => {
   }, []);
 
   const handleYes = () => {
-    // Immediate transition for best user experience
     setState(AppState.ACCEPTED);
   };
 
@@ -131,7 +130,7 @@ const App: React.FC = () => {
             </div>
             <div className="p-6 rounded-xl border-2 border-dashed border-[#d12d3e]">
                 <p className="text-xl md:text-2xl text-[#d12d3e] leading-relaxed font-body italic font-semibold">
-                    "You make me the happiest person alive! I'm so lucky to have you as my Valentine. Call me soon at 034 93 801 32 - Jonathan ❤️"
+                    "You make me the happiest person alive! I'm so lucky to have you as my Valentine. I can't wait to spend time with you! ❤️"
                 </p>
             </div>
             <div className="flex flex-col items-center gap-4">
@@ -153,7 +152,7 @@ const App: React.FC = () => {
       </div>
 
       <div className="fixed bottom-14 right-14 text-[#d12d3e] text-xs font-bold opacity-40 pointer-events-none hidden md:block uppercase font-body">
-        Jonathan • 034 93 801 32
+        Jonathan
       </div>
     </RetroBorder>
   );
