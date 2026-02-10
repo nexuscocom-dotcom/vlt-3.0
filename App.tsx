@@ -131,6 +131,7 @@ const App: React.FC = () => {
             <div className="p-6 rounded-xl border-2 border-dashed border-[#d12d3e]">
                 <p className="text-xl md:text-2xl text-[#d12d3e] leading-relaxed font-body italic font-semibold">
                     "You make me the happiest person alive! I'm so lucky to have you as my Valentine. I can't wait to spend time with you! ❤️"
+                    <span className="block mt-4 not-italic font-bold text-2xl">- Jonathan</span>
                 </p>
             </div>
             <div className="flex flex-col items-center gap-4">
@@ -138,7 +139,7 @@ const App: React.FC = () => {
                     href="tel:0349380132"
                     className="bg-[#d12d3e] text-white font-bold py-4 px-10 rounded-full shadow-xl hover:scale-105 transition active:scale-95 text-xl flex items-center gap-3 font-body"
                 >
-                    <span>Call Jonathan</span> 📞
+                    <span>Call me</span> 📞
                 </a>
                 <button
                     onClick={() => { setState(AppState.ASKING); setNoButtonPos({x:0, y:0}); }}
